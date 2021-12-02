@@ -2,22 +2,24 @@
 
 A module for Quill rich text editor to allow images to be resized.
 
-Also see [quill-resize-module](https://github.com/1002237913/quill-resize-module),
+Fork of pblobp/quill-video-resize-module
+
+Also see [quill-resize-module](https://github.com/BOTOOM/quill-resize-module),
 a module that enables resize for image/iframe/video.
 
 ## Demo
 
-![image](https://raw.githubusercontent.com/1002237913/quill-resize-module/master/demo/demo.gif)
+![image](https://raw.githubusercontent.com/BOTOOM/quill-resize-module/master/demo/demo.gif)
 
 ## Usage
 
 ### Webpack/ES6
 
-`npm install @ssumo/quill-resize-module`
+`npm install @botom/quill-resize-module`
 
 ```javascript
 import Quill from "quill";
-import ResizeModule from "@ssumo/quill-resize-module";
+import ResizeModule from "@botom/quill-resize-module";
 
 Quill.register("modules/resize", ResizeModule);
 
@@ -81,6 +83,7 @@ const quill = new Quill(editor, {
       modules: {
         toolbar: toolbarOptions,
         resize: {
+          toolbar: true,
           locale: {
             center: "center"
           }

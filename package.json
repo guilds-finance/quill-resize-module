@@ -1,21 +1,22 @@
 {
-  "name": "@ssumo/quill-resize-module",
+  "name": "@botom/quill-resize-module",
   "version": "1.0.0",
   "main": "./dist/quill-resize-module.js",
   "typings": "types/main.d.ts",
   "author": {
-    "email": "1002237913@qq.com",
-    "name": "王超"
+    "email": "ediaz@teravisiontech.com",
+    "name": "Edwar Diaz"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/1002237913/quill-resize-module.git"
+    "url": "https://github.com/BOTOOM/quill-resize-module.git"
   },
   "license": "MIT",
   "keywords": [
     "quill",
     "quill-resize-module",
     "quill-image-resize",
+    "quill-video-resize",
     "quill-iframe-resize"
   ],
   "dependencies": {},
@@ -40,6 +41,7 @@
   "files": [
     "src",
     "dist/*.js",
-    "types/*.d.ts"
+    "types/*.d.ts",
+    "demo"
   ]
 }
