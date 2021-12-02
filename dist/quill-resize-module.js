@@ -71,11 +71,11 @@
         return I18n;
     }());
     var defaultLocale = {
-        altTip: "按住alt键比例缩放",
-        floatLeft: "靠左",
-        floatRight: "靠右",
+        altTip: "Hold down the alt key to zoom",
+        floatLeft: "Left",
+        floatRight: "Right",
         center: "Center",
-        restore: "还原"
+        restore: "Restore",
     };
 
     function format(str) {
@@ -104,13 +104,16 @@
     }(HTMLElement));
     var templateWithoutToolbar = "\n<div class=\"handler\" title=\"{0}\"></div>\n";
     var template = "\n<div class=\"handler\" title=\"{0}\"></div>\n<div class=\"toolbar\">\n  <div class=\"group\">\n    <a class=\"btn\" data-width=\"100%\">100%</a>\n    <a class=\"btn\" data-width=\"50%\">50%</a>\n    <a  class=\"btn btn-group\">\n      <span data-width=\"-5\" class=\"inner-btn\">\uFE63</span>\n      <span data-width=\"5\" class=\"inner-btn\">\uFE62</span>\n    </a>\n    <a data-width=\"auto\" class=\"btn\">{4}</a>\n  </div>\n  <div class=\"group\">\n    <a class=\"btn\" data-float=\"left\">{1}</a>\n    <a class=\"btn\" data-float=\"center\">{2}</a>\n    <a class=\"btn\" data-float=\"right\">{3}</a>\n    <a data-float=\"none\" class=\"btn\">{4}</a>\n  </div>\n</div>\n";
-    var showToolbar = false;
+    var hiddenToobar = false;
+    var noUseStyle = false;
     var ResizePlugin = /** @class */ (function () {
         function ResizePlugin(resizeTarget, container, options) {
             this.resizer = null;
             this.startResizePosition = null;
             this.i18n = new I18n((options === null || options === void 0 ? void 0 : options.locale) || defaultLocale);
-            (options === null || options === void 0 ? void 0 : options.toolbar) ? showToolbar = true : showToolbar = false;
+            // options?.toolbar ? showToolbar = true: showToolbar = false
+            hiddenToobar = (options === null || options === void 0 ? void 0 : options.hiddenToobar) || false;
+            noUseStyle = (options === null || options === void 0 ? void 0 : options.noUseStyle) || false;
             this.resizeTarget = resizeTarget;
             if (!resizeTarget.originSize) {
                 resizeTarget.originSize = {
@@ -132,7 +135,7 @@
             if (!resizer) {
                 resizer = document.createElement("div");
                 resizer.setAttribute("id", "editor-resizer");
-                resizer.innerHTML = format(showToolbar ? template : templateWithoutToolbar, this.i18n.findLabel("altTip"), this.i18n.findLabel("floatLeft"), this.i18n.findLabel("center"), this.i18n.findLabel("floatRight"), this.i18n.findLabel("restore"));
+                resizer.innerHTML = format(hiddenToobar ? templateWithoutToolbar : template, this.i18n.findLabel("altTip"), this.i18n.findLabel("floatLeft"), this.i18n.findLabel("center"), this.i18n.findLabel("floatRight"), this.i18n.findLabel("restore"));
                 this.container.appendChild(resizer);
             }
             this.resizer = resizer;
@@ -227,8 +230,14 @@
                 var rate = originSize.height / originSize.width;
                 height = rate * width;
             }
-            this.resizeTarget.style.setProperty("width", Math.max(width, 30) + "px");
-            this.resizeTarget.style.setProperty("height", Math.max(height, 30) + "px");
+            if (noUseStyle) {
+                this.resizeTarget.setAttribute("width", Math.max(width, 30) + "");
+                this.resizeTarget.setAttribute("height", Math.max(height, 30) + "");
+            }
+            else {
+                this.resizeTarget.style.setProperty("width", Math.max(width, 30) + "px");
+                this.resizeTarget.style.setProperty("height", Math.max(height, 30) + "px");
+            }
             this.positionResizerToTarget(this.resizeTarget);
         };
         ResizePlugin.prototype.destory = function () {
