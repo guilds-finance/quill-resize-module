@@ -1,6 +1,6 @@
 # QUILL-RESIZE-MODULE
 
-A module for Quill rich text editor to allow images to be resized.
+A module for the Quill rich text editor that allows you to resize images and videos.
 
 Fork of [@ssumo/quill-resize-module](https://github.com/1002237913/quill-resize-module)
 
@@ -52,7 +52,7 @@ Quill.register("modules/resize", ResizeModule);
 const quill = new Quill(editor, {
   modules: {
     resize: {
-      hiddenToobar: false,
+      hiddenToobar: true,
       noUseStyle: true,
       locale: {
         // ...
