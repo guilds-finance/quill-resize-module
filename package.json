@@ -16,6 +16,7 @@
     "quill",
     "quill-resize-module",
     "quill-image-resize",
+    "quill-video-resize",
     "quill-iframe-resize"
   ],
   "dependencies": {},
