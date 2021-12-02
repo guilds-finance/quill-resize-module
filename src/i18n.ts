@@ -22,7 +22,7 @@ const defaultLocale: Locale = {
   altTip: "按住alt键比例缩放",
   floatLeft: "靠左",
   floatRight: "靠右",
-  center: "居中",
+  center: "Center",
   restore: "还原"
 };
 export { I18n, Locale, defaultLocale };

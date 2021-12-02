@@ -10,6 +10,7 @@ interface Quill {
 interface QuillResizeModuleOptions {
   [index: string]: any;
   locale?: Locale;
+  toolbar: boolean;
 }
 
 function QuillResizeModule(quill: Quill, options?: QuillResizeModuleOptions) {
