@@ -18,7 +18,8 @@ class ResizeElement extends HTMLElement {
 
 interface ResizePluginOption {
   locale?: Locale;
-  toolbar?: boolean;
+  hiddenToobar?: boolean;
+  noUseStyle?: boolean;
 }
 const templateWithoutToolbar = `
 <div class="handler" title="{0}"></div>
@@ -44,7 +45,9 @@ const template = `
   </div>
 </div>
 `;
-let showToolbar = false;
+let hiddenToobar = false;
+let noUseStyle = false;
+
 class ResizePlugin {
   resizeTarget: ResizeElement;
   resizer: HTMLElement | null = null;
@@ -58,7 +61,9 @@ class ResizePlugin {
     options?: ResizePluginOption
   ) {
     this.i18n = new I18n(options?.locale || defaultLocale);
-    options?.toolbar ? showToolbar = true: showToolbar = false
+    // options?.toolbar ? showToolbar = true: showToolbar = false
+    hiddenToobar = options?.hiddenToobar || false
+    noUseStyle = options?.noUseStyle || false
     this.resizeTarget = resizeTarget;
     if (!resizeTarget.originSize) {
       resizeTarget.originSize = {
@@ -86,7 +91,7 @@ class ResizePlugin {
       resizer = document.createElement("div");
       resizer.setAttribute("id", "editor-resizer");
       resizer.innerHTML = format(
-        showToolbar ?template : templateWithoutToolbar,
+        hiddenToobar ?templateWithoutToolbar: template,
         this.i18n.findLabel("altTip"),
         this.i18n.findLabel("floatLeft"),
         this.i18n.findLabel("center"),
@@ -184,9 +189,13 @@ class ResizePlugin {
       const rate: number = originSize.height / originSize.width;
       height = rate * width;
     }
-
-    this.resizeTarget.style.setProperty("width", Math.max(width, 30) + "px");
-    this.resizeTarget.style.setProperty("height", Math.max(height, 30) + "px");
+    if (noUseStyle) {
+      this.resizeTarget.setAttribute("width", Math.max(width, 30) + "");
+      this.resizeTarget.setAttribute("height", Math.max(height, 30) + "");
+    } else {
+      this.resizeTarget.style.setProperty("width", Math.max(width, 30) + "px");
+      this.resizeTarget.style.setProperty("height", Math.max(height, 30) + "px");
+    }
     this.positionResizerToTarget(this.resizeTarget);
   }
 

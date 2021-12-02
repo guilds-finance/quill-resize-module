@@ -19,10 +19,10 @@ class I18n {
 }
 
 const defaultLocale: Locale = {
-  altTip: "按住alt键比例缩放",
-  floatLeft: "靠左",
-  floatRight: "靠右",
+  altTip: "Hold down the alt key to zoom",
+  floatLeft: "Left",
+  floatRight: "Right",
   center: "Center",
-  restore: "还原"
+  restore: "Restore",
 };
 export { I18n, Locale, defaultLocale };
