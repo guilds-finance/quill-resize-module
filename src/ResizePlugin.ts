@@ -18,7 +18,12 @@ class ResizeElement extends HTMLElement {
 
 interface ResizePluginOption {
   locale?: Locale;
+  toolbar?: boolean;
 }
+const templateWithoutToolbar = `
+<div class="handler" title="{0}"></div>
+`;
+
 const template = `
 <div class="handler" title="{0}"></div>
 <div class="toolbar">
@@ -39,6 +44,7 @@ const template = `
   </div>
 </div>
 `;
+let showToolbar = false;
 class ResizePlugin {
   resizeTarget: ResizeElement;
   resizer: HTMLElement | null = null;
@@ -52,7 +58,7 @@ class ResizePlugin {
     options?: ResizePluginOption
   ) {
     this.i18n = new I18n(options?.locale || defaultLocale);
-
+    options?.toolbar ? showToolbar = true: showToolbar = false
     this.resizeTarget = resizeTarget;
     if (!resizeTarget.originSize) {
       resizeTarget.originSize = {
@@ -80,7 +86,7 @@ class ResizePlugin {
       resizer = document.createElement("div");
       resizer.setAttribute("id", "editor-resizer");
       resizer.innerHTML = format(
-        template,
+        showToolbar ?template : templateWithoutToolbar,
         this.i18n.findLabel("altTip"),
         this.i18n.findLabel("floatLeft"),
         this.i18n.findLabel("center"),
