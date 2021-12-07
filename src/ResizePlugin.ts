@@ -1,6 +1,6 @@
 import "./ResizePlugin.less";
 import { I18n, Locale, defaultLocale } from "./i18n";
-import { format, formatSize } from "./utils";
+import { format } from "./utils";
 
 interface Size {
   width: number;
