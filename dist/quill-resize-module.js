@@ -92,11 +92,6 @@
             }
         });
     }
-    function formatSize(str, value) {
-        return str.replace(/\{(size)\}/g, function (match, index) {
-            return value;
-        });
-    }
 
     var ResizeElement = /** @class */ (function (_super) {
         __extends(ResizeElement, _super);
@@ -107,10 +102,6 @@
         }
         return ResizeElement;
     }(HTMLElement));
-    var templateWithoutToolbar = "\n<div class=\"handler\" title=\"{0}\"></div>\n";
-    var template = "\n<div class=\"handler\" title=\"{0}\"></div>\n<div class=\"showSize\" title=\"{0}\">{size}</div>\n<div class=\"toolbar\">\n  <div class=\"group\">\n    <a class=\"btn\" data-width=\"100%\">100%</a>\n    <a class=\"btn\" data-width=\"50%\">50%</a>\n    <a  class=\"btn btn-group\">\n      <span data-width=\"-5\" class=\"inner-btn\">\uFE63</span>\n      <span data-width=\"5\" class=\"inner-btn\">\uFE62</span>\n    </a>\n    <a data-width=\"auto\" class=\"btn\">{4}</a>\n  </div>\n  <div class=\"group\">\n    <a class=\"btn\" data-float=\"left\">{1}</a>\n    <a class=\"btn\" data-float=\"center\">{2}</a>\n    <a class=\"btn\" data-float=\"right\">{3}</a>\n    <a data-float=\"none\" class=\"btn\">{4}</a>\n  </div>\n</div>\n";
-    var hiddenToobar = false;
-    var noUseStyle = false;
     var templateUsed;
     var ResizePlugin = /** @class */ (function () {
         function ResizePlugin(resizeTarget, container, options) {
@@ -118,13 +109,13 @@
             this.startResizePosition = null;
             this.i18n = new I18n((options === null || options === void 0 ? void 0 : options.locale) || defaultLocale);
             // options?.toolbar ? showToolbar = true: showToolbar = false
-            hiddenToobar = (options === null || options === void 0 ? void 0 : options.hiddenToobar) || false;
-            noUseStyle = (options === null || options === void 0 ? void 0 : options.noUseStyle) || false;
+            // hiddenToobar = options?.hiddenToobar || false;
+            templateUsed = this.createToobar(options);
             this.resizeTarget = resizeTarget;
             if (!resizeTarget.originSize) {
                 resizeTarget.originSize = {
                     width: resizeTarget.clientWidth,
-                    height: resizeTarget.clientHeight
+                    height: resizeTarget.clientHeight,
                 };
             }
             this.container = container;
@@ -141,11 +132,18 @@
             if (!resizer) {
                 resizer = document.createElement("div");
                 resizer.setAttribute("id", "editor-resizer");
-                templateUsed = hiddenToobar ? templateWithoutToolbar : template,
-                    resizer.innerHTML = format(templateUsed, this.i18n.findLabel("altTip"), this.i18n.findLabel("floatLeft"), this.i18n.findLabel("center"), this.i18n.findLabel("floatRight"), this.i18n.findLabel("restore"));
+                resizer.innerHTML = format(templateUsed, this.i18n.findLabel("altTip"), this.i18n.findLabel("floatLeft"), this.i18n.findLabel("center"), this.i18n.findLabel("floatRight"), this.i18n.findLabel("restore"));
                 this.container.appendChild(resizer);
             }
             this.resizer = resizer;
+        };
+        ResizePlugin.prototype.createToobar = function (options) {
+            var _a, _b;
+            var templateBasicToolbar = "\n    <div class=\"handler\" title=\"{0}\"></div>\n    ";
+            var sizeTools = "<div class=\"group\">\n    <a class=\"btn\" data-width=\"100%\">100%</a>\n    <a class=\"btn\" data-width=\"50%\">50%</a>\n    <a  class=\"btn btn-group\">\n      <span data-width=\"-5\" class=\"inner-btn\">\uFE63</span>\n      <span data-width=\"5\" class=\"inner-btn\">\uFE62</span>\n    </a>\n    <a data-width=\"auto\" class=\"btn\">{4}</a>\n  </div>";
+            var alingTools = "<div class=\"group\">\n  <a class=\"btn\" data-float=\"left\">{1}</a>\n  <a class=\"btn\" data-float=\"center\">{2}</a>\n  <a class=\"btn\" data-float=\"right\">{3}</a>\n  <a data-float=\"none\" class=\"btn\">{4}</a>\n</div>";
+            var toolBarTemplate = "<div class=\"toolbar\">\n    " + (((_a = options === null || options === void 0 ? void 0 : options.toolbar) === null || _a === void 0 ? void 0 : _a.sizeTools) !== false ? sizeTools : "") + "\n    " + (((_b = options === null || options === void 0 ? void 0 : options.toolbar) === null || _b === void 0 ? void 0 : _b.alingTools) !== false ? alingTools : "") + "\n  </div>";
+            return "" + templateBasicToolbar + ((options === null || options === void 0 ? void 0 : options.showToolbar) && toolBarTemplate);
         };
         ResizePlugin.prototype.positionResizerToTarget = function (el) {
             if (this.resizer !== null) {
@@ -153,7 +151,7 @@
                 this.resizer.style.setProperty("top", el.offsetTop + "px");
                 this.resizer.style.setProperty("width", el.clientWidth + "px");
                 this.resizer.style.setProperty("height", el.clientHeight + "px");
-                this.resizer.innerHTML = formatSize(templateUsed, "450px, 500px");
+                // this.resizer.innerHTML = formatSize (templateUsed, "450px, 500px")
             }
         };
         ResizePlugin.prototype.bindEvents = function () {
@@ -222,7 +220,7 @@
                     left: e.clientX,
                     top: e.clientY,
                     width: this.resizeTarget.clientWidth,
-                    height: this.resizeTarget.clientHeight
+                    height: this.resizeTarget.clientHeight,
                 };
             }
         };
@@ -243,14 +241,8 @@
                 var rate = originSize.height / originSize.width;
                 height = rate * width;
             }
-            if (noUseStyle) {
-                this.resizeTarget.setAttribute("width", Math.max(width, 30) + "");
-                this.resizeTarget.setAttribute("height", Math.max(height, 30) + "");
-            }
-            else {
-                this.resizeTarget.style.setProperty("width", Math.max(width, 30) + "px");
-                this.resizeTarget.style.setProperty("height", Math.max(height, 30) + "px");
-            }
+            this.resizeTarget.setAttribute("width", Math.max(width, 30) + "");
+            this.resizeTarget.setAttribute("height", Math.max(height, 30) + "");
             this.positionResizerToTarget(this.resizeTarget);
         };
         ResizePlugin.prototype.destory = function () {

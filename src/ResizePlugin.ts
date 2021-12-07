@@ -22,7 +22,7 @@ interface ResizePluginOption {
     alingTools?: boolean;
     sizeTools?: boolean;
   };
-  hiddenToobar?: boolean;
+  showToolbar?: boolean;
 }
 const templateWithoutToolbar = `
 <div class="handler" title="{0}"></div>
@@ -48,7 +48,6 @@ const template = `
   </div>
 </div>
 `;
-let hiddenToobar = false;
 let templateUsed: string;
 
 class ResizePlugin {
@@ -65,7 +64,8 @@ class ResizePlugin {
   ) {
     this.i18n = new I18n(options?.locale || defaultLocale);
     // options?.toolbar ? showToolbar = true: showToolbar = false
-    hiddenToobar = options?.hiddenToobar || false;
+    // hiddenToobar = options?.hiddenToobar || false;
+    templateUsed = this.createToobar(options);
     this.resizeTarget = resizeTarget;
     if (!resizeTarget.originSize) {
       resizeTarget.originSize = {
@@ -91,23 +91,42 @@ class ResizePlugin {
     if (!resizer) {
       resizer = document.createElement("div");
       resizer.setAttribute("id", "editor-resizer");
-      (templateUsed = hiddenToobar ? templateWithoutToolbar : template),
-        (resizer.innerHTML = format(
-          templateUsed,
-          this.i18n.findLabel("altTip"),
-          this.i18n.findLabel("floatLeft"),
-          this.i18n.findLabel("center"),
-          this.i18n.findLabel("floatRight"),
-          this.i18n.findLabel("restore")
-        ));
+      resizer.innerHTML = format(
+        templateUsed,
+        this.i18n.findLabel("altTip"),
+        this.i18n.findLabel("floatLeft"),
+        this.i18n.findLabel("center"),
+        this.i18n.findLabel("floatRight"),
+        this.i18n.findLabel("restore")
+      );
       this.container.appendChild(resizer);
     }
     this.resizer = resizer;
   }
-  createToobar(options: ResizePluginOption) {
-    const templateWithoutToolbar = `
+  createToobar(options?: ResizePluginOption) {
+    const templateBasicToolbar = `
     <div class="handler" title="{0}"></div>
     `;
+    const sizeTools = `<div class="group">
+    <a class="btn" data-width="100%">100%</a>
+    <a class="btn" data-width="50%">50%</a>
+    <a  class="btn btn-group">
+      <span data-width="-5" class="inner-btn">﹣</span>
+      <span data-width="5" class="inner-btn">﹢</span>
+    </a>
+    <a data-width="auto" class="btn">{4}</a>
+  </div>`;
+    const alingTools = `<div class="group">
+  <a class="btn" data-float="left">{1}</a>
+  <a class="btn" data-float="center">{2}</a>
+  <a class="btn" data-float="right">{3}</a>
+  <a data-float="none" class="btn">{4}</a>
+</div>`;
+    const toolBarTemplate = `<div class="toolbar">
+    ${options?.toolbar?.sizeTools !== false ? sizeTools : ""}
+    ${options?.toolbar?.alingTools !== false ? alingTools : ""}
+  </div>`;
+    return `${templateBasicToolbar}${options?.showToolbar && toolBarTemplate}`;
   }
   positionResizerToTarget(el: HTMLElement) {
     if (this.resizer !== null) {
