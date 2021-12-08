@@ -104,29 +104,29 @@ class ResizePlugin {
     this.resizer = resizer;
   }
   createToobar(options?: ResizePluginOption) {
-    const templateBasicToolbar = `
-    <div class="handler" title="{0}"></div>
-    `;
+    const templateBasicToolbar = `<div class="handler" title="{0}"></div>`;
     const sizeTools = `<div class="group">
-    <a class="btn" data-width="100%">100%</a>
-    <a class="btn" data-width="50%">50%</a>
-    <a  class="btn btn-group">
+      <a class="btn" data-width="100%">100%</a>
+      <a class="btn" data-width="50%">50%</a>
+      <a  class="btn btn-group">
       <span data-width="-5" class="inner-btn">﹣</span>
       <span data-width="5" class="inner-btn">﹢</span>
-    </a>
-    <a data-width="auto" class="btn">{4}</a>
-  </div>`;
+      </a>
+      <a data-width="auto" class="btn">{4}</a>
+      </div>`;
     const alingTools = `<div class="group">
-  <a class="btn" data-float="left">{1}</a>
-  <a class="btn" data-float="center">{2}</a>
-  <a class="btn" data-float="right">{3}</a>
-  <a data-float="none" class="btn">{4}</a>
-</div>`;
+      <a class="btn" data-float="left">{1}</a>
+      <a class="btn" data-float="center">{2}</a>
+      <a class="btn" data-float="right">{3}</a>
+      <a data-float="none" class="btn">{4}</a>
+      </div>`;
     const toolBarTemplate = `<div class="toolbar">
     ${options?.toolbar?.sizeTools !== false ? sizeTools : ""}
     ${options?.toolbar?.alingTools !== false ? alingTools : ""}
   </div>`;
-    return `${templateBasicToolbar}${options?.showToolbar && toolBarTemplate}`;
+    return `${templateBasicToolbar}${
+      options?.showToolbar !== false ? toolBarTemplate : ""
+    }`;
   }
   positionResizerToTarget(el: HTMLElement) {
     if (this.resizer !== null) {

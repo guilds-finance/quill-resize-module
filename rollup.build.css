@@ -16,7 +16,7 @@
 }
 #editor-resizer .toolbar {
   position: absolute;
-  top: -5em;
+  top: -3em;
   left: 50%;
   padding: 0.5em;
   border: 1px solid #fff;
@@ -144,7 +144,7 @@
 }
 #editor-resizer .toolbar {
   position: absolute;
-  top: -5em;
+  top: -3em;
   left: 50%;
   padding: 0.5em;
   border: 1px solid #fff;
