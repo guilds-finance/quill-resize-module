@@ -90,13 +90,13 @@ class ResizePlugin {
       <span data-width="-5" class="inner-btn">﹣</span>
       <span data-width="5" class="inner-btn">﹢</span>
       </a>
-      <a data-width="auto" class="btn">{4}</a>
+      <a data-width="auto" class="btn last-item">{4}</a>
       </div>`;
     const alingTools = `<div class="group">
       <a class="btn" data-float="left">{1}</a>
       <a class="btn" data-float="center">{2}</a>
       <a class="btn" data-float="right">{3}</a>
-      <a data-float="none" class="btn">{4}</a>
+      <a data-float="none" class="btn last-item">{4}</a>
       </div>`;
     const toolBarTemplate = `<div class="toolbar">
     ${options?.toolbar?.sizeTools !== false ? sizeTools : ""}
