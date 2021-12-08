@@ -56,7 +56,7 @@
         return __assign.apply(this, arguments);
     };
 
-    __$styleInject("#editor-resizer {\n  position: absolute;\n  border: 1px dashed #fff;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n#editor-resizer .handler {\n  position: absolute;\n  right: -5px;\n  bottom: -5px;\n  width: 10px;\n  height: 10px;\n  border: 1px solid #333;\n  background-color: rgba(255, 255, 255, 0.8);\n  cursor: nwse-resize;\n  user-select: none;\n}\n#editor-resizer .toolbar {\n  position: absolute;\n  top: -3em;\n  left: 50%;\n  padding: 0.5em;\n  border: 1px solid #fff;\n  border-radius: 3px;\n  background-color: #fff;\n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);\n  transform: translateX(-50%);\n}\n#editor-resizer .toolbar .group {\n  display: flex;\n  border: 1px solid #aaa;\n  border-radius: 6px;\n  overflow: hidden;\n  white-space: nowrap;\n  text-align: center;\n}\n#editor-resizer .toolbar .group:not(:first-child) {\n  margin-top: 0.5em;\n}\n#editor-resizer .toolbar .group .btn {\n  flex: 1 0 0;\n  text-align: center;\n  width: 25%;\n  padding: 0 0.5rem;\n  display: inline-block;\n  color: rgba(0, 0, 0, 0.65);\n  vertical-align: top;\n  line-height: 2;\n  user-select: none;\n}\n#editor-resizer .toolbar .group .btn.btn-group {\n  padding: 0;\n  display: inline-flex;\n  line-height: 2em;\n}\n#editor-resizer .toolbar .group .btn.btn-group .inner-btn {\n  flex: 1 0 0;\n  font-size: 2em;\n  width: 50%;\n  cursor: pointer;\n}\n#editor-resizer .toolbar .group .btn.btn-group .inner-btn:first-child {\n  border-right: 1px solid #ddd;\n}\n#editor-resizer .toolbar .group .btn.btn-group .inner-btn:active {\n  transform: scale(0.8);\n}\n#editor-resizer .toolbar .group .btn:not(:last-child) {\n  border-right: 1px solid #bbb;\n}\n#editor-resizer .toolbar .group .btn:not(.btn-group):active {\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#editor-resizer .showSize {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  padding: 0.5em;\n  border: 1px solid #fff;\n  border-radius: 3px;\n  background-color: #fff;\n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);\n  transform: translateX(-50%);\n}\n#editor-resizer .showSize .group {\n  display: flex;\n  border: 1px solid #aaa;\n  border-radius: 6px;\n  overflow: hidden;\n  white-space: nowrap;\n  text-align: center;\n}\n#editor-resizer .showSize .group:not(:first-child) {\n  margin-top: 0.5em;\n}\n#editor-resizer .showSize .group .btn {\n  flex: 1 0 0;\n  text-align: center;\n  width: 25%;\n  padding: 0 0.5rem;\n  display: inline-block;\n  color: rgba(0, 0, 0, 0.65);\n  vertical-align: top;\n  line-height: 2;\n  user-select: none;\n}\n#editor-resizer .showSize .group .btn.btn-group {\n  padding: 0;\n  display: inline-flex;\n  line-height: 2em;\n}\n#editor-resizer .showSize .group .btn.btn-group .inner-btn {\n  flex: 1 0 0;\n  font-size: 2em;\n  width: 50%;\n  cursor: pointer;\n}\n#editor-resizer .showSize .group .btn.btn-group .inner-btn:first-child {\n  border-right: 1px solid #ddd;\n}\n#editor-resizer .showSize .group .btn.btn-group .inner-btn:active {\n  transform: scale(0.8);\n}\n#editor-resizer .showSize .group .btn:not(:last-child) {\n  border-right: 1px solid #bbb;\n}\n#editor-resizer .showSize .group .btn:not(.btn-group):active {\n  background-color: rgba(0, 0, 0, 0.1);\n}\n");
+    __$styleInject("#editor-resizer {\n  position: absolute;\n  border: 1px dashed #fff;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n#editor-resizer .handler {\n  position: absolute;\n  right: -5px;\n  bottom: -5px;\n  width: 10px;\n  height: 10px;\n  border: 1px solid #333;\n  background-color: rgba(255, 255, 255, 0.8);\n  cursor: nwse-resize;\n  user-select: none;\n}\n#editor-resizer .toolbar {\n  position: absolute;\n  top: -3em;\n  left: 50%;\n  padding: 0.5em;\n  border: 1px solid #fff;\n  border-radius: 3px;\n  background-color: #fff;\n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);\n  transform: translateX(-50%);\n}\n#editor-resizer .toolbar .group {\n  display: flex;\n  border: 1px solid #aaa;\n  border-radius: 6px;\n  overflow: hidden;\n  white-space: nowrap;\n  text-align: center;\n}\n#editor-resizer .toolbar .group:not(:first-child) {\n  margin-top: 0.5em;\n}\n#editor-resizer .toolbar .group .btn {\n  flex: 1 0 0;\n  text-align: center;\n  width: 25%;\n  padding: 0 0.5rem;\n  display: inline-block;\n  color: rgba(0, 0, 0, 0.65);\n  vertical-align: top;\n  line-height: 2;\n  user-select: none;\n}\n#editor-resizer .toolbar .group .btn.btn-group {\n  padding: 0;\n  display: inline-flex;\n  line-height: 2em;\n}\n#editor-resizer .toolbar .group .btn.btn-group .inner-btn {\n  flex: 1 0 0;\n  font-size: 2em;\n  width: 50%;\n  cursor: pointer;\n}\n#editor-resizer .toolbar .group .btn.btn-group .inner-btn:first-child {\n  border-right: 1px solid #ddd;\n}\n#editor-resizer .toolbar .group .btn.btn-group .inner-btn:active {\n  transform: scale(0.8);\n}\n#editor-resizer .toolbar .group .btn:not(:last-child) {\n  border-right: 1px solid #bbb;\n}\n#editor-resizer .toolbar .group .btn:not(.btn-group):active {\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#editor-resizer .showSize {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  padding: 0.1em;\n  border: 1px solid rgba(255, 255, 255, 0.8);\n  border-radius: 2px;\n  background-color: rgba(255, 255, 255, 0.8);\n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);\n  transform: translateX(-50%);\n}\n");
 
     var I18n = /** @class */ (function () {
         function I18n(config) {
@@ -103,13 +103,12 @@
         return ResizeElement;
     }(HTMLElement));
     var templateUsed;
+    var pluginOptions;
     var ResizePlugin = /** @class */ (function () {
         function ResizePlugin(resizeTarget, container, options) {
             this.resizer = null;
             this.startResizePosition = null;
             this.i18n = new I18n((options === null || options === void 0 ? void 0 : options.locale) || defaultLocale);
-            // options?.toolbar ? showToolbar = true: showToolbar = false
-            // hiddenToobar = options?.hiddenToobar || false;
             templateUsed = this.createToobar(options);
             this.resizeTarget = resizeTarget;
             if (!resizeTarget.originSize) {
@@ -118,6 +117,7 @@
                     height: resizeTarget.clientHeight,
                 };
             }
+            pluginOptions = options;
             this.container = container;
             this.initResizer();
             this.positionResizerToTarget(resizeTarget);
@@ -140,10 +140,11 @@
         ResizePlugin.prototype.createToobar = function (options) {
             var _a, _b;
             var templateBasicToolbar = "<div class=\"handler\" title=\"{0}\"></div>";
+            var size = "<div class=\"showSize\" name=\"ql-size\" title=\"{0}\">{size}</div>";
             var sizeTools = "<div class=\"group\">\n      <a class=\"btn\" data-width=\"100%\">100%</a>\n      <a class=\"btn\" data-width=\"50%\">50%</a>\n      <a  class=\"btn btn-group\">\n      <span data-width=\"-5\" class=\"inner-btn\">\uFE63</span>\n      <span data-width=\"5\" class=\"inner-btn\">\uFE62</span>\n      </a>\n      <a data-width=\"auto\" class=\"btn\">{4}</a>\n      </div>";
             var alingTools = "<div class=\"group\">\n      <a class=\"btn\" data-float=\"left\">{1}</a>\n      <a class=\"btn\" data-float=\"center\">{2}</a>\n      <a class=\"btn\" data-float=\"right\">{3}</a>\n      <a data-float=\"none\" class=\"btn\">{4}</a>\n      </div>";
             var toolBarTemplate = "<div class=\"toolbar\">\n    " + (((_a = options === null || options === void 0 ? void 0 : options.toolbar) === null || _a === void 0 ? void 0 : _a.sizeTools) !== false ? sizeTools : "") + "\n    " + (((_b = options === null || options === void 0 ? void 0 : options.toolbar) === null || _b === void 0 ? void 0 : _b.alingTools) !== false ? alingTools : "") + "\n  </div>";
-            return "" + templateBasicToolbar + ((options === null || options === void 0 ? void 0 : options.showToolbar) !== false ? toolBarTemplate : "");
+            return "" + templateBasicToolbar + ((options === null || options === void 0 ? void 0 : options.showSize) === true ? size : "") + ((options === null || options === void 0 ? void 0 : options.showToolbar) !== false ? toolBarTemplate : "");
         };
         ResizePlugin.prototype.positionResizerToTarget = function (el) {
             if (this.resizer !== null) {
@@ -151,6 +152,11 @@
                 this.resizer.style.setProperty("top", el.offsetTop + "px");
                 this.resizer.style.setProperty("width", el.clientWidth + "px");
                 this.resizer.style.setProperty("height", el.clientHeight + "px");
+                // this.resizer.getElementsByTagName("ql-size").item(0)?.innerHTML = `450px, 500px`
+                (pluginOptions === null || pluginOptions === void 0 ? void 0 : pluginOptions.showSize) &&
+                    (document.getElementsByName("ql-size").item(0).innerHTML = (el.getAttribute("width") ? el.getAttribute("width") : el.clientWidth) + ", " + (el.getAttribute("height")
+                        ? el.getAttribute("height")
+                        : el.clientHeight));
                 // this.resizer.innerHTML = formatSize (templateUsed, "450px, 500px")
             }
         };
